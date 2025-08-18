@@ -1,10 +1,8 @@
-import time
-import os
+import time, os
 from datetime import datetime
-from colorama import Fore, Style, init
+from colorama import Fore, init
 
 init(autoreset=True)
-
 LOG_FILE = "logs.txt"
 
 def cinematic_print(text, delay=0.02):
@@ -17,7 +15,6 @@ def read_logs():
     if not os.path.exists(LOG_FILE):
         print(Fore.RED + "❌ Log file not found.")
         return
-
     with open(LOG_FILE, "r", encoding="utf-8") as f:
         logs = f.read().split("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         for entry in logs:
