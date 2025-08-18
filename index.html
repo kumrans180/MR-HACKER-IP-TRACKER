@@ -1,29 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Location Tracker</title>
+    <title>🔍 HackmanX Location Tracker</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00FF00;
+            font-family: monospace;
+            padding: 20px;
+        }
+        button {
+            background-color: #00FF00;
+            color: black;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        #ascii {
+            white-space: pre;
+            font-size: 14px;
+            color: #00FF00;
+        }
+    </style>
 </head>
 <body>
-    <h2>Welcome</h2>
-    <p>This is a demo page for location tracking.</p>
-    <button onclick="getLocation()">Share Exact Location</button>
+    <div id="ascii">
+        ██╗  ██╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███╗   ██╗
+        ██║ ██╔╝██╔══██╗██╔════╝██║  ██║████╗ ████║████╗  ██║
+        █████╔╝ ███████║██║     ███████║██╔████╔██║██╔██╗ ██║
+        ██╔═██╗ ██╔══██║██║     ██╔══██║██║╚██╔╝██║██║╚██╗██║
+        ██║  ██╗██║  ██║╚██████╗██║  ██║██║ ╚═╝ ██║██║ ╚████║
+        ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═══╝
+    </div>
+
+    <h2>📡 लोकेशन ट्रैकर एक्टिवेटेड</h2>
+    <p>अपने ब्राउज़र से सटीक लोकेशन भेजने के लिए नीचे क्लिक करें:</p>
+    <button onclick="getLocation()">📍 लोकेशन भेजें</button>
     <p id="result"></p>
+
     <script>
         function getLocation() {
+            document.getElementById("result").innerHTML = "🔄 लोकेशन प्राप्त की जा रही है...";
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    document.getElementById("result").innerHTML = 
-                        "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-                    // Send data to server
+                    let lat = position.coords.latitude;
+                    let lon = position.coords.longitude;
+                    document.getElementById("result").innerHTML =
+                        "✅ Latitude: " + lat + "<br>✅ Longitude: " + lon;
+
+                    // Send to server
                     var xhr = new XMLHttpRequest();
                     xhr.open("POST", "/location", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.send("lat=" + position.coords.latitude + "&lon=" + position.coords.longitude);
+                    xhr.send("lat=" + lat + "&lon=" + lon);
                 }, function(error) {
-                    document.getElementById("result").innerHTML = "Permission denied or location unavailable.";
+                    document.getElementById("result").innerHTML = "❌ अनुमति अस्वीकृत या लोकेशन उपलब्ध नहीं।";
                 });
             } else {
-                document.getElementById("result").innerHTML = "Geolocation not supported.";
+                document.getElementById("result").innerHTML = "⚠️ आपका ब्राउज़र Geolocation सपोर्ट नहीं करता।";
             }
         }
     </script>
