@@ -3,25 +3,9 @@
 <head>
     <title>🔍 HackmanX Location Tracker</title>
     <style>
-        body {
-            background-color: black;
-            color: #00FF00;
-            font-family: monospace;
-            padding: 20px;
-        }
-        button {
-            background-color: #00FF00;
-            color: black;
-            font-weight: bold;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-        #ascii {
-            white-space: pre;
-            font-size: 14px;
-            color: #00FF00;
-        }
+        body { background-color: black; color: #00FF00; font-family: monospace; padding: 20px; }
+        button { background-color: #00FF00; color: black; font-weight: bold; padding: 10px; border: none; cursor: pointer; }
+        #ascii { white-space: pre; font-size: 14px; color: #00FF00; }
     </style>
 </head>
 <body>
@@ -33,12 +17,10 @@
         ██║  ██╗██║  ██║╚██████╗██║  ██║██║ ╚═╝ ██║██║ ╚████║
         ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═══╝
     </div>
-
     <h2>📡 लोकेशन ट्रैकर एक्टिवेटेड</h2>
     <p>अपने ब्राउज़र से सटीक लोकेशन भेजने के लिए नीचे क्लिक करें:</p>
     <button onclick="getLocation()">📍 लोकेशन भेजें</button>
     <p id="result"></p>
-
     <script>
         function getLocation() {
             document.getElementById("result").innerHTML = "🔄 लोकेशन प्राप्त की जा रही है...";
@@ -48,8 +30,6 @@
                     let lon = position.coords.longitude;
                     document.getElementById("result").innerHTML =
                         "✅ Latitude: " + lat + "<br>✅ Longitude: " + lon;
-
-                    // Send to server
                     var xhr = new XMLHttpRequest();
                     xhr.open("POST", "/location", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
