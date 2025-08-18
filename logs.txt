@@ -1,1 +1,1 @@
-# Logs will appear here when someone clicks the link or shares location
+python3 log_viewer.py
