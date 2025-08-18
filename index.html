@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Tracker</title>
+</head>
+<body>
+    <h2>Welcome</h2>
+    <p>This is a demo page for location tracking.</p>
+    <button onclick="getLocation()">Share Exact Location</button>
+    <p id="result"></p>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    document.getElementById("result").innerHTML = 
+                        "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+                    // Send data to server
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/location", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.send("lat=" + position.coords.latitude + "&lon=" + position.coords.longitude);
+                }, function(error) {
+                    document.getElementById("result").innerHTML = "Permission denied or location unavailable.";
+                });
+            } else {
+                document.getElementById("result").innerHTML = "Geolocation not supported.";
+            }
+        }
+    </script>
+</body>
+</html>
