@@ -1,5 +1,5 @@
 flask
 requests
-colorama         # 🎨 Terminal colors for CLI tools
-rich             # 📜 Beautiful console output (optional for log viewer)
-geopy            # 🌍 For reverse geolocation or distance calc (future use)
+colorama
+gtts
+playsound
