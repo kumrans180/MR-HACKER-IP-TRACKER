@@ -58,3 +58,5 @@ def log():
     else:
         os.system('espeak -v hi "Location data prapt nahi hua. Target se sampark toot gaya."')
         return {'status': 'error', 'message': 'Location data missing'}, 400
+        if __name__ == "__main__":
+    app.run(debug=True, port=5000)
