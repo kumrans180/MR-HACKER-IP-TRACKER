@@ -1,6 +1,6 @@
 # 🎬 HackmanX-IP-Tracker
 
-A cinematic, Hindi-narrated IP + GPS tracker inspired by Seeker.
+A cinematic, Hindi-narrated IP + GPS tracker inspired by mr-hackr.
 
 ## Features
 - 📍 Exact location via browser
