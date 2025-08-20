@@ -1,19 +1,17 @@
 # 🎬 HackmanX-IP-Tracker
 
-A cinematic, Hindi-narrated IP + GPS tracker inspired by mr-hackr.
+Cinematic IP tracker with Hindi narration, sound effects, and real-time log viewer.
 
-## Features
-- 📍 Exact location via browser
-- 🕵️ IP + device fingerprint logging
-- 🎬 Hacker-style log viewer
-- 🗣️ Hindi narration alerts
-- 🔊 Sound effects
-- 📦 Modular templates (WhatsApp, Zoom, Drive)
+## ✨ Features
+- Exact location tracking via browser
+- Hindi narration: "Target mil gaya. Coordinates locked."
+- Real-time log viewer with color-coded entries
+- Sound effects on location capture
+- Mobile-friendly UI
 
-## Setup
+## 🚀 Quick Start
 ```bash
+git clone https://github.com/mrhackman/HackmanX-IP-Tracker.git
+cd HackmanX-IP-Tracker
 bash install.sh
 python3 app.py
-git clone https://github.com/mrhackman/HackmanX-IP-Tracker.git
-
-
