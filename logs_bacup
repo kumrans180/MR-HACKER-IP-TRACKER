@@ -1,1 +1,1 @@
-cp logs.txt logs_backup/logs_$(date +%F_%H-%M-%S).txt
+cp logs.txt logs_backup/logs_$(date +%F_%H-%M-%S).txt && espeak -v hi "लॉग फ़ाइल का बैकअप सफलतापूर्वक बना लिया गया।"
