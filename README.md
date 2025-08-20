@@ -14,3 +14,6 @@ A cinematic, Hindi-narrated IP + GPS tracker inspired by mr-hackr.
 ```bash
 bash install.sh
 python3 app.py
+git clone https://github.com/mrhackman/HackmanX-IP-Tracker.git
+
+
