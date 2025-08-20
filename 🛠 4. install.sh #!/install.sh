@@ -1,7 +1,6 @@
 #!/bin/bash
-echo "🔧 Installing HackmanX-IP-Tracker dependencies..."
+echo "🔧 Installing dependencies..."
 sudo apt update
-sudo apt install python3-pip -y
-pip3 install -r requirements.txt --break-system-packages
-echo "✅ Setup complete!"
-echo "🎬 Run with: python3 app.py"
+sudo apt install python3 python3-pip espeak -y
+pip3 install flask
+echo "✅ Installation complete. Run with: python3 app.py"
