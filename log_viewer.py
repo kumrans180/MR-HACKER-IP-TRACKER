@@ -1,14 +1,7 @@
-import time, os
+import time
 
-def narrate(text):
-    os.system(f'espeak -v hi "{text}"')
-
-print("📡 Real-time log viewer started...")
-with open('logs.txt', 'r') as f:
-    f.seek(0, 2)
-    while True:
-        line = f.readline()
-        if line:
-            print(f"\033[92m{line.strip()}\033[0m")
-            narrate("Naya target track hua")
-        time.sleep(1)
+while True:
+    with open("logs.txt") as f:
+        print(f.read())
+    time.sleep(5)
+    os.system("clear")
