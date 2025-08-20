@@ -1,0 +1,1 @@
+cp logs.txt logs_backup/logs_$(date +%F_%H-%M-%S).txt
