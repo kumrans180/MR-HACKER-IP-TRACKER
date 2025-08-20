@@ -1,0 +1,20 @@
+body {
+  background-color: #000;
+  color: #00ffcc;
+  font-family: 'Orbitron', monospace;
+  text-align: center;
+  padding-top: 50px;
+}
+button {
+  background: #ff0033;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+  border: none;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
